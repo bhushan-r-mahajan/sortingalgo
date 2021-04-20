@@ -19,4 +19,7 @@ operationsDict[operation2]=$operation2
 operationsDict[operation3]=$operation3
 operationsDict[operation4]=$operation4
 
-echo "[${operationsDict[@]}]"
+echo "Dictionary=[${operationsDict[@]}]"
+echo "Dictionary Keys=[${!operationsDict[@]}]"
+operationsArray=${operationsDict[@]}
+echo "Array=[${operationsArray[@]}]"
