@@ -1,3 +1,5 @@
+#!/bin/bash -x
+
 echo "Welcome"
 
 read -p "Enter 1st value=" a;
@@ -10,7 +12,7 @@ echo "The output for Opration-2 = "$operation2
 operation3=`awk "BEGIN{print $c+($a/$b)}"`
 echo "The output for Opration-3 = "$operation3
 operation4=`awk "BEGIN{print $a%($b+$c)}"`
-echo "The output for Operation-3 = "$operation4
+echo "The output for Operation-4 = "$operation4
 
 declare -A operationsDict
 
@@ -21,5 +23,9 @@ operationsDict[operation4]=$operation4
 
 echo "Dictionary=[${operationsDict[@]}]"
 echo "Dictionary Keys=[${!operationsDict[@]}]"
-operationsArray=${operationsDict[@]}
-echo "Array=[${operationsArray[@]}]"
+
+operationsArray=( $operation1 $operation2 $operation3 $operation4 )
+
+echo "Array=[ ${operationsArray[@]} ]"
+
+printf '%s\n' "${operationsArray[@]}" | sort -n
