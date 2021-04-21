@@ -1,5 +1,3 @@
-#!/bin/bash -x
-
 echo "Welcome"
 
 read -p "Enter 1st value=" a;
@@ -28,4 +26,33 @@ operationsArray=( $operation1 $operation2 $operation3 $operation4 )
 
 echo "Array=[ ${operationsArray[@]} ]"
 
-printf '%s\n' "${operationsArray[@]}" | sort -n
+for ((i=0; i <= $((${#operationsArray[@]} - 2)); ++i))
+do
+	for ((j=((i + 1)); j <= ((${#operationsArray[@]} - 1)); ++j))
+	do
+		if [[ ${operationsArray[i]} -gt ${operationsArray[j]} ]]
+		then
+			tmp=${operationsArray[i]}
+			operationsArray[i]=${operationsArray[j]}
+			operationsArray[j]=$tmp
+		fi
+	done
+done
+
+echo "Array in Ascending Order= [ "${operationsArray[@]}" ]"
+
+for ((i=0; i <= $((${#operationsArray[@]} - 2)); ++i))
+do
+   for ((j=((i + 1)); j <= ((${#operationsArray[@]} - 1)); ++j))
+   do
+      if [[ ${operationsArray[i]} -lt ${operationsArray[j]} ]]
+      then
+         tmp=${operationsArray[j]}
+         operationsArray[j]=${operationsArray[i]}
+         operationsArray[i]=$tmp
+      fi
+   done
+done
+
+echo "Array in Decending Order= [ "${operationsArray[@]}" ]"
+
